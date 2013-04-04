@@ -1,7 +1,7 @@
 /*
 
     MAKHANI: Global Changes
-        - I Found and Replaced ALL 'operators' with 'factorial'
+        - I Found and Replaced ALL 'operators' with 'operators'
 
     objects.js
 
@@ -158,7 +158,7 @@ SpriteMorph.prototype.categories =
         // 'looks',
         // 'sensing',
         // 'sound',
-        'factorial',
+        'operators',
         // 'pen',
         // 'variables',
         // 'lists',
@@ -172,7 +172,7 @@ SpriteMorph.prototype.blockColor = {
     pen : new Color(0, 161, 120),
     control : new Color(230, 168, 34),
     sensing : new Color(4, 148, 220),
-    factorial : new Color(98, 194, 19),
+    operators : new Color(98, 194, 19),
     variables : new Color(243, 118, 29),
     lists : new Color(217, 77, 17),
     other: new Color(150, 150, 150)
@@ -768,7 +768,7 @@ SpriteMorph.prototype.initBlocks = function () {
             spec: 'set turbo mode to %b'
         },
 
-        // factorial
+        // operators
         reifyScript: {
             type: 'ring',
             category: 'other',
@@ -786,142 +786,142 @@ SpriteMorph.prototype.initBlocks = function () {
         },
         reportSum: {
             type: 'reporter',
-            category: 'factorial',
+            category: 'operators',
             spec: '%n + %n'
         },
         reportDifference: {
             type: 'reporter',
-            category: 'factorial',
+            category: 'operators',
             spec: '%n \u2212 %n'
         },
         reportProduct: {
             type: 'reporter',
-            category: 'factorial',
+            category: 'operators',
             spec: '%n \u00D7 %n'
         },
         reportQuotient: {
             type: 'reporter',
-            category: 'factorial',
+            category: 'operators',
             spec: '%n / %n' // '%n \u00F7 %n'
         },
         reportRound: {
             type: 'reporter',
-            category: 'factorial',
+            category: 'operators',
             spec: 'round %n'
         },
         reportMonadic: {
             type: 'reporter',
-            category: 'factorial',
+            category: 'operators',
             spec: '%fun of %n',
             defaults: [null, 10]
         },
         reportModulus: {
             type: 'reporter',
-            category: 'factorial',
+            category: 'operators',
             spec: '%n mod %n'
         },
         reportRandom: {
             type: 'reporter',
-            category: 'factorial',
+            category: 'operators',
             spec: 'pick random %n to %n',
             defaults: [1, 10]
         },
         reportLessThan: {
             type: 'predicate',
-            category: 'factorial',
+            category: 'operators',
             spec: '%s < %s'
         },
         reportEquals: {
             type: 'predicate',
-            category: 'factorial',
+            category: 'operators',
             spec: '%s = %s'
         },
         reportGreaterThan: {
             type: 'predicate',
-            category: 'factorial',
+            category: 'operators',
             spec: '%s > %s'
         },
         reportAnd: {
             type: 'predicate',
-            category: 'factorial',
+            category: 'operators',
             spec: '%b and %b'
         },
         reportOr: {
             type: 'predicate',
-            category: 'factorial',
+            category: 'operators',
             spec: '%b or %b'
         },
         reportNot: {
             type: 'predicate',
-            category: 'factorial',
+            category: 'operators',
             spec: 'not %b'
         },
         reportTrue: {
             type: 'predicate',
-            category: 'factorial',
+            category: 'operators',
             spec: 'true'
         },
         reportFalse: {
             type: 'predicate',
-            category: 'factorial',
+            category: 'operators',
             spec: 'false'
         },
         reportJoinWords: {
             type: 'reporter',
-            category: 'factorial',
+            category: 'operators',
             spec: 'join %words',
             defaults: [localize('hello') + ' ', localize('world')]
         },
         reportLetter: {
             type: 'reporter',
-            category: 'factorial',
+            category: 'operators',
             spec: 'letter %n of %s',
             defaults: [1, localize('world')]
         },
         reportStringSize: {
             type: 'reporter',
-            category: 'factorial',
+            category: 'operators',
             spec: 'length of %s',
             defaults: [localize('world')]
         },
         reportUnicode: {
             type: 'reporter',
-            category: 'factorial',
+            category: 'operators',
             spec: 'unicode of %s',
             defaults: ['a']
         },
         reportUnicodeAsLetter: {
             type: 'reporter',
-            category: 'factorial',
+            category: 'operators',
             spec: 'unicode %n as letter',
             defaults: [65]
         },
         reportIsA: {
             type: 'predicate',
-            category: 'factorial',
+            category: 'operators',
             spec: 'is %s a %typ ?',
             defaults: [5]
         },
         reportIsIdentical: {
             type: 'predicate',
-            category: 'factorial',
+            category: 'operators',
             spec: 'is %s identical to %s ?'
         },
         reportTypeOf: { // only in dev mode for debugging
             type: 'reporter',
-            category: 'factorial',
+            category: 'operators',
             spec: 'type of %s',
             defaults: [5]
         },
     /*
         reportScript: {
             type: 'reporter',
-            category: 'factorial',
+            category: 'operators',
             spec: 'the script %parms %c'
         },
         reify: {
             type: 'reporter',
-            category: 'factorial',
+            category: 'operators',
             spec: 'the %f block %parms'
         },
     */
@@ -1073,7 +1073,7 @@ SpriteMorph.prototype.blockAlternatives = {
     reportMouseX: ['reportMouseY'],
     reportMouseY: ['reportMouseX'],
 
-    // factorial:
+    // operators:
     reportSum: ['reportDifference', 'reportProduct', 'reportQuotient'],
     reportDifference: ['reportSum', 'reportProduct', 'reportQuotient'],
     reportProduct: ['reportDifference', 'reportSum', 'reportQuotient'],
@@ -1611,8 +1611,8 @@ SpriteMorph.prototype.blockTemplates = function (category) {
             blocks.push(block('reportFrameCount'));
         }
 
-    } else if (cat === 'factorial') {
-        // MAKHANI: I commented out the non-relevant blocks for Factorial
+    } else if (cat === 'operators') {
+        // MAKHANI: I commented out the non-relevant blocks for operators
         // blocks.push(block('reifyScript'));
         // blocks.push(block('reifyReporter'));
         // blocks.push(block('reifyPredicate'));
@@ -1653,7 +1653,7 @@ SpriteMorph.prototype.blockTemplates = function (category) {
 
 
     // MAKHANI This was the code below that needed to be commented
-    // MAKHANI when you change line 121 in gui.js to 'factorial'. That's
+    // MAKHANI when you change line 121 in gui.js to 'operators'. That's
     // MAKHANI why snap froze last time. 
     // for debugging: ///////////////
         // if (this.world().isDevMode) {
@@ -3028,7 +3028,7 @@ SpriteMorph.prototype.thumbnail = function (extentPoint) {
 SpriteMorph.prototype.booleanMorph = function (bool) {
     // answer a block which can be shown in watchers, speech bubbles etc.
     var block = new ReporterBlockMorph(true);
-    block.color = SpriteMorph.prototype.blockColor.factorial;
+    block.color = SpriteMorph.prototype.blockColor.operators;
     block.setSpec(bool.toString());;
     return block;
 };
@@ -3728,7 +3728,7 @@ StageMorph.prototype.blockTemplates = function (category) {
 
     /////////////////////////////////
 
-    } else if (cat === 'factorial') {
+    } else if (cat === 'operators') {
 
         blocks.push(block('reifyScript'));
         blocks.push(block('reifyReporter'));

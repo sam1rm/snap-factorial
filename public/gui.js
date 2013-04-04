@@ -119,7 +119,7 @@ IDE_Morph.prototype.init = function (isAutoFill) {
     this.currentSprite = new SpriteMorph(this.globalVariables);
     this.sprites = new List([this.currentSprite]);
     // MAKHANI: Changed the line below this from 'motion' to 'factorial'
-    this.currentCategory = 'factorial';
+    this.currentCategory = 'operators';
     this.currentTab = 'scripts';
     this.projectName = '';
     this.projectNotes = '';
@@ -1122,7 +1122,7 @@ IDE_Morph.prototype.createCorral = function () {
     this.corral.stageIcon = new SpriteIconMorph(this.stage);
     this.corral.stageIcon.isDraggable = false;
     // MAKHANI: Deleted the stage icon. 
-    this.corral.add(this.corral.stageIcon);
+    // this.corral.add(this.corral.stageIcon);
 
     frame = new ScrollFrameMorph(null, null, this.sliderColor);
     frame.acceptsDrops = false;

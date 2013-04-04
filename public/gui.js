@@ -118,7 +118,7 @@ IDE_Morph.prototype.init = function (isAutoFill) {
     this.globalVariables = new VariableFrame();
     this.currentSprite = new SpriteMorph(this.globalVariables);
     this.sprites = new List([this.currentSprite]);
-    // MAKHANI: Changed the line below this from 'motion' to 'factorial'
+    // MAKHANI: Changed the line below this from 'motion' to 'operators'
     this.currentCategory = 'operators';
     this.currentTab = 'scripts';
     this.projectName = '';

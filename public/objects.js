@@ -1,7 +1,5 @@
 /*
 
-    MAKHANI: Global Changes
-        - I Found and Replaced ALL 'operators' with 'operators'
 
     objects.js
 

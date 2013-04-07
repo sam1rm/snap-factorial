@@ -3017,3 +3017,27 @@ BlockImportDialogMorph.prototype.importBlocks = function (name) {
 
 BlockImportDialogMorph.prototype.fixLayout
     = BlockEditorMorph.prototype.fixLayout;
+
+// KAMKO: test
+window.onload = function() {
+    new BlockDialogMorph(
+    null,
+        function (definition) {
+            if (definition.spec !== '') {
+                if (definition.isGlobal) {
+                    stage.globalBlocks.push(definition);
+                } else {
+                    obj.customBlocks.push(definition);
+                }
+                ide.flushPaletteCache();
+                ide.refreshPalette();
+                new BlockEditorMorph(definition, obj).popUp();
+            }
+        },
+        myself
+    ).prompt(
+        'Make a block',
+        null,
+        myself.world()
+    );
+}

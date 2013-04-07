@@ -6,10 +6,10 @@
     based on morphic.js
     inspired by Scratch
 
-    written by Jens Mšnig
+    written by Jens MÂšnig
     jens@moenig.org
 
-    Copyright (C) 2013 by Jens Mšnig
+    Copyright (C) 2013 by Jens MÂšnig
 
     This file is part of Snap!. 
 
@@ -183,7 +183,7 @@ var ArgLabelMorph;
 WorldMorph.prototype.customMorphs = function () {
     // add examples to the world's demo menu
 
-    return [];
+    return [hello];
 
 /*
     return [

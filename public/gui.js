@@ -6,10 +6,10 @@
     based on morphic.js, blocks.js, threads.js and objects.js
     inspired by Scratch
 
-    written by Jens Mšnig
+    written by Jens MÅ¡nig
     jens@moenig.org
 
-    Copyright (C) 2013 by Jens Mšnig
+    Copyright (C) 2013 by Jens MÅ¡nig
 
     This file is part of Snap!. 
 
@@ -232,26 +232,6 @@ IDE_Morph.prototype.openIn = function (world) {
             this.droppedText(hash);
         } else {
             this.droppedText(getURL(hash));
-            
-            // KAMKO: the following code opens an "edit block" dialong for factorial on start!
-
-            findFactorial = function() {
-                var blocks = stage.globalBlocks
-                var len = blocks.length
-                for (var i = 0; i < len; i++) {
-                    if (blocks[i].spec == "factorial of %'x'")
-                        return i;
-                }
-                return null;
-            }
-
-            var myself = world;     
-            var ide = myself.children[0];
-            var stage = ide.stage;
-            var factorial = stage.globalBlocks[findFactorial()]
-            if (factorial != null) {
-                new BlockEditorMorph(factorial, factorial.receiver).popUp();
-            }
         }
     } else if (location.hash.substr(0, 5) === '#run:') {
         hash = location.hash.substr(5);
@@ -273,6 +253,7 @@ IDE_Morph.prototype.openIn = function (world) {
     } else if (location.hash.substr(0, 7) === '#signup') {
         this.createCloudAccount();
     }
+
 };
 
 // IDE_Morph construction
@@ -2327,6 +2308,13 @@ IDE_Morph.prototype.openProjectString = function (str) {
         },
         function () {
             msg.destroy();
+
+            // KAMKO:
+            // Sends an event to the document that opens "Edit Block"
+            // for factorial once XML finishes loading!
+
+            document.dispatchEvent(XMLevent);
+
         }
     ]);
 };

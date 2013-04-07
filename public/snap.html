@@ -23,52 +23,32 @@
 				world = new WorldMorph(document.getElementById('world'));
 				new IDE_Morph().openIn(world);
 				setInterval(loop, 1);
-
-				// KAMKO: the following code would open a "Edit block" dialog on starting snap, but I haven't figured out how to implement it properly yet.
-
-				/* findFactorial = function() {
-					var blocks = stage.globalBlocks
-					var len = blocks.length
-					for (var i = 0; i < len; i++) {
-						if (blocks[i].spec == "factorial of %'x'")
-							return i;
-					}
-					return null;
-				}
-
-				var myself = world;		
-				var ide = myself.children[0];
-				var stage = ide.stage;
-				var factorial = stage.globalBlocks[findFactorial()]
-				if (factorial != null) {
-					new BlockEditorMorph(factorial, factorial.receiver).popUp();
-				} */
+			}
 				
-				
-				// KAMKO: The following code would open a "make new block" dialog on starting snap
+            // KAMKO:
+            // The following code creates an event and listener that 
+            // opens "Edit Block" for factorial once the XML is finished loading!
 
-				/* new BlockDialogMorph(
-                    null,
-                    function (definition) {
-                        if (definition.spec !== '') {
-                            if (definition.isGlobal) {
-                                stage.globalBlocks.push(definition);
-                            } else {
-                                obj.customBlocks.push(definition);
-                            }
-                            ide.flushPaletteCache();
-                            ide.refreshPalette();
-                            new BlockEditorMorph(definition, obj).popUp();
-                        }
-                    },
-                    myself
-                ).prompt(
-                    'Make a block',
-                    null,
-                    myself.world()
-                ) */
+            var ide;
+            var stage;
 
-            };
+            var XMLevent = document.createEvent("Event");
+            XMLevent.initEvent("loadedXML", true, true);
+            document.addEventListener("loadedXML", function findFactorial() {
+            		ide = world.children[0];
+            		stage = ide.stage;
+            		var blocks = stage.globalBlocks;
+            		var len = blocks.length;
+            		var factorial = null;
+            		for (var i = 0; i < len; i++) {
+            			if (blocks[i].spec == "factorial of %'x'")
+            				factorial = blocks[i];
+            		};
+            		if (factorial != null) {
+            			new BlockEditorMorph(factorial, factorial.receiver).popUp();
+            		};
+            	}, false);
+
 
 			function loop() {
 				world.doOneCycle();

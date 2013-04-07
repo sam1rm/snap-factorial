@@ -1103,8 +1103,8 @@ IDE_Morph.prototype.createCorralBar = function () {
     button.fixLayout();
     button.setCenter(this.corralBar.center());
     button.setLeft(this.corralBar.left() + padding);
-    //MAKHANI: Deleted the Sprite button to add a new sprite. 
-    this.corralBar.add(button);
+    // MAKHANI: Deleted the Sprite button to add a new sprite. 
+    // this.corralBar.add(button);
 
 };
 

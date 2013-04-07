@@ -294,6 +294,15 @@ SpriteMorph.prototype.initBlocks = function () {
             category: 'looks',
             spec: 'next costume'
         },
+
+        // KAMKO: Added stringToImage primative
+        stringToImage: {
+            type: 'command',
+            category: 'looks',
+            spec: '%s into costume, size %n',
+            defaults: [localize('string'), 25]
+        },
+
         getCostumeIdx: {
             type: 'reporter',
             category: 'looks',
@@ -1443,6 +1452,10 @@ SpriteMorph.prototype.blockTemplates = function (category) {
 
         blocks.push(block('doSwitchToCostume'));
         blocks.push(block('doWearNextCostume'));
+        
+        // KAMKO: Added stringToImage primative
+        blocks.push(block('stringToImage'));
+
         blocks.push(watcherToggle('getCostumeIdx'));
         blocks.push(block('getCostumeIdx'));
         blocks.push('-');
@@ -2428,6 +2441,29 @@ SpriteMorph.prototype.drawLine = function (start, dest) {
 };
 
 // SpriteMorph motion
+
+// KAMKO: new method that converts a string to an image
+SpriteMorph.prototype.stringToImage = function(string, size) {
+    var canvas = document.createElement('canvas');
+    var context = canvas.getContext('2d');
+
+    var text = string;
+    context.font = size + 'pt Andale Mono';
+    var metrics = context.measureText(text);
+    var textWidth = metrics.width;
+    canvas.width = textWidth;
+    canvas.height = size + 30;
+
+    context.font = size + 'pt Andale Mono';
+    context.fillText(string, 0, size);
+
+    var ide = world.children[0]
+    var costume = new Costume(canvas, string);
+    ide.currentSprite.addCostume(costume);
+    ide.currentSprite.wearCostume(costume);
+    ide.spriteBar.tabBar.tabTo('costumes');
+    ide.hasChangedMedia = true;
+};
 
 SpriteMorph.prototype.forward = function (steps) {
     var start = this.rotationCenter(),
@@ -3597,6 +3633,10 @@ StageMorph.prototype.blockTemplates = function (category) {
 
         blocks.push(block('doSwitchToCostume'));
         blocks.push(block('doWearNextCostume'));
+
+        // KAMKO: Added stringToImage primative
+        blocks.push(block('stringToImage'));
+
         blocks.push(watcherToggle('getCostumeIdx'));
         blocks.push(block('getCostumeIdx'));
         blocks.push('-');

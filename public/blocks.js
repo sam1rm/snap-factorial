@@ -1843,6 +1843,26 @@ BlockMorph.prototype.userMenu = function () {
         },
         'open a new window\nwith a picture of this script'
     );
+
+    // KAMKO: new feature! Script Pic to costume!
+
+    menu.addItem(
+        "script pic to costume...",
+        function () {
+            var image = myself.topBlock().fullImage()
+
+            var ide = world.children[0]
+
+            var costume = new Costume(image, 'ScriptPic'); // up to period
+            ide.currentSprite.addCostume(costume);
+            ide.currentSprite.wearCostume(costume);
+            ide.spriteBar.tabBar.tabTo('costumes');
+            ide.hasChangedMedia = true;
+        },
+        'create a new sprite\nfrom picture of this script'
+    );
+
+    
     if (this.parentThatIsA(RingMorph)) {
         menu.addLine();
         menu.addItem("unringify", 'unringify');

@@ -3,6 +3,7 @@ findBlock = function() {
 	var len = blocks.length
 	for (var i = 0; i < len; i++) {
 		if (blocks[i].spec == "factorial of %'num'")
+			alert("sup");
 			return i;
 	}
 	return null;

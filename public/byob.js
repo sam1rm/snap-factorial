@@ -1450,10 +1450,12 @@ BlockEditorMorph.prototype.init = function (definition, target) {
     scriptsFrame.contents.acceptsDrops = true;
     scripts.scrollFrame = scriptsFrame;
 
+
     this.addBody(scriptsFrame);
-    this.addButton('ok', 'OK');
+    // MAKHANI: Removed OK, Cancel functionality.
+    // this.addButton('ok', 'OK');
     this.addButton('updateDefinition', 'Apply');
-    this.addButton('cancel', 'Cancel');
+    // this.addButton('cancel', 'Cancel');
 
     this.setExtent(new Point(375, 300));
     this.fixLayout();
